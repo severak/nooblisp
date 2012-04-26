@@ -1,0 +1,62 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=windows-1250">
+  <meta name="generator" content="PSPad editor, www.pspad.com">
+  <title></title>
+  </head>
+  <body>
+  <script src="json2.js"></script>
+  <script src="nooblisp.js"></script>
+  
+  <script>
+  function test(a){
+    document.write(JSON.stringify(a)+" = "+nooblisp.exec(a)+"<br>");
+  }
+  </script>
+  
+  <script>
+  //arithmetics
+  test(["plus",1,1]);
+  test(["minus",2,1]);
+  test(["times",3,["plus",1,1]]);
+  //set, get
+  test(["set","pi",3.14]);
+  test(["get","pi"]);
+  //get undefined
+  test(["get","undef"]);
+  //pass
+  test(["pass",64]);
+  test(["pass",["get","pi"]]);
+  //equeal
+  test(["eq",1,1]);
+  test(["eq",2,["plus",1,1]]);
+  //print
+  test(["print","Hello world!"]);
+  //if
+  test(["if",["eq",1,1],["print","OK"],["print","FAIL"]]);
+  test(["if",["eq",1,1],["print","OK"]]);
+  //alias
+  test(["set","+",["get","plus"]]);
+  test(["+",1,1]);
+  //incr
+  test([["set","count",1],["incr","count"],["get","count"]]);
+  //decr
+  test([["decr","count"],["get","count"]]);
+  //lt & gt
+  test(["lt",1,2]);
+  test(["gt",6,5]);
+  //lt + get
+  test(["lt",["get","pi"],4]);
+  //while
+  test([["set","i",1],
+        ["while", ["lt",["get","i"],10],
+          [
+            ["print",["get","i"]], ["incr","i"]
+          ] 
+        ]]);
+  //living
+  test(["print","live!"]);
+  </script>
+  </body>
+</html>
